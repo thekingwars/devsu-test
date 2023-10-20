@@ -1,0 +1,63 @@
+.devsu-button {
+  color: black;
+
+  font-size: 20px;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.devsu-button-primary {
+  background-color: #f9de4b;
+}
+
+.devsu-button-secondary {
+  background-color: #e9ecf3;
+}
+
+.devsu-button-error{
+  background-color: #e53e3e;
+}
+
+.devsu-button-success{
+  background-color: #38a169;
+}
+
+button:disabled {
+  background-color: #fdf199;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.loader-devsu-button {
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-button-color{
+  background-color: #fdf199;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

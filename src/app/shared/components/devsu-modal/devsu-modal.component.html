@@ -1,0 +1,25 @@
+<div class="center">
+  <div class="contain">
+    <div class="text text-center">
+      ¿Estás seguro de eliminar el producto {{ product.name }}?
+    </div>
+
+    <hr />
+
+    <div class="d-flex justify-content-center">
+      <devsu-button
+        label="Cancelar"
+        color="secondary"
+        class="mr-2"
+        (onClick)="onClickCancelFunction()"
+      >
+      </devsu-button>
+      <devsu-button
+        label="Confirmar"
+        (onClick)="onClickConfirmFunction(product)"
+        [loader]="loading"
+      >
+      </devsu-button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+<ng-container
+  *ngIf="{
+    patchDateRevision: patchDateRevision$ | async,
+    patchForm: patchForm$ | async,
+    haveUrlParam: haveUrlParam$ | async
+  } as state"
+>
+  <section class="card w-50 mx-auto">
+    <h1 class="text-center">Formulario de Registro</h1>
+
+    <hr />
+
+    <form [formGroup]="formProduct" (ngSubmit)="onsubmit(state.haveUrlParam!)">
+      <div class="grid">
+        <div class="form-group">
+          <label>ID</label>
+          <input
+            [disabled]="state.haveUrlParam!"
+            [ngClass]="{
+              error: isValidField('id', formProduct)
+            }"
+            type="text"
+            class="w-90 devsu-input"
+            formControlName="id"
+          />
+
+          <small
+            *ngIf="isValidField('id', formProduct)"
+            class="p-error block text-left pl-2"
+          >
+            {{
+              getErrorMessage("id", formProduct, {
+                minLength: 3,
+                maxLength: 10
+              })
+            }}
+          </small>
+        </div>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input
+            [ngClass]="{
+              error: isValidField('name', formProduct)
+            }"
+            type="text"
+            class="w-90 devsu-input"
+            formControlName="name"
+          />
+          <small
+            *ngIf="isValidField('name', formProduct)"
+            class="p-error block text-left pl-2"
+          >
+            {{
+              getErrorMessage("name", formProduct, {
+                minLength: 5,
+                maxLength: 100
+              })
+            }}
+          </small>
+        </div>
+        <div class="form-group">
+          <label>Descripcion</label>
+          <input
+            [ngClass]="{
+              error: isValidField('description', formProduct)
+            }"
+            type="text"
+            class="w-90 devsu-input"
+            formControlName="description"
+          />
+          <small
+            *ngIf="isValidField('description', formProduct)"
+            class="p-error block text-left pl-2"
+          >
+            {{
+              getErrorMessage("description", formProduct, {
+                minLength: 10,
+                maxLength: 200
+              })
+            }}
+          </small>
+        </div>
+        <div class="form-group">
+          <label>Logo</label>
+          <input
+            [ngClass]="{
+              error: isValidField('logo', formProduct)
+            }"
+            type="text"
+            class="w-90 devsu-input"
+            formControlName="logo"
+          />
+          <small
+            *ngIf="isValidField('logo', formProduct)"
+            class="p-error block text-left pl-2"
+          >
+            {{ getErrorMessage("logo", formProduct, {}) }}
+          </small>
+        </div>
+        <div class="form-group">
+          <label>Fecha Liberacion</label>
+          <input
+            [ngClass]="{
+              error: isValidField('date_release', formProduct)
+            }"
+            type="date"
+            class="w-90 devsu-input"
+            [min]="minDate"
+            formControlName="date_release"
+            (keydown)="disableInput($event)"
+          />
+          <small
+            *ngIf="isValidField('date_release', formProduct)"
+            class="p-error block text-left pl-2"
+          >
+            {{ getErrorMessage("date_release", formProduct, {}) }}
+          </small>
+        </div>
+        <div class="form-group">
+          <label>Fecha Revision</label>
+          <input
+            type="date"
+            class="w-90 devsu-input"
+            formControlName="date_revision"
+            [disabled]="true"
+          />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center w-100 mt-5">
+        <devsu-button
+          color="secondary"
+          label="Reiniciar"
+          class="mr-2"
+          (onClick)="resetForm()"
+        ></devsu-button>
+        <devsu-button
+          label="Enviar"
+          color="primary"
+          type="submit"
+          [loader]="loading()"
+          [disabled]="formProduct.invalid"
+        ></devsu-button>
+      </div>
+    </form>
+  </section>
+</ng-container>

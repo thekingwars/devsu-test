@@ -1,0 +1,13 @@
+<button
+  [disabled]="disabled"
+  [ngClass]="{
+    'loader-button-color': loader
+  }"
+  class="devsu-button devsu-button-{{ color }} loader-devsu-button"
+  [type]="type"
+  (click)="onClickFunction()"
+>
+  <ng-content></ng-content>
+
+  <span *ngIf="label">{{ label }} <span *ngIf="loader" class="loader"></span> </span>
+</button>

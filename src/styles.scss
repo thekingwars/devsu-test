@@ -1,1 +1,176 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+
+body {
+  font-size: 100%;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f6f9;
+}
+
+.color-white{
+  color: white;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+fz-25{
+  font-size: 25px !important;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  background-color: #fff;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.p-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.p-table th,
+.p-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.p-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.p-table tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.devsu-input {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.devsu-input:hover {
+  border-color: #4a5568;
+}
+
+.devsu-input:focus {
+  outline: none;
+  border-color: #1a202c;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+input:disabled {
+  background-color: #f0f0f0;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+.devsu-input.error {
+  border: 2px solid #e53e3e;
+  box-shadow: none;
+}
+
+.devsu-input.success {
+  border: 2px solid #38a169;
+}
+
+.p-error {
+  color: #e53e3e;
+}
+
+@keyframes skeletonAnimation {
+  0% {
+    background-color: rgba(0, 0, 0, 0.1); /* Color de fondo inicial */
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.3); /* Color de fondo intermedio */
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.1); /* Color de fondo final */
+  }
+}
+
+.skeleton-table {
+  width: 100%; /* Ancho de la tabla */
+  border-collapse: collapse;
+}
+
+.skeleton-table th,
+.skeleton-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.skeleton-cell {
+  height: 20px; /* Altura de cada celda del skeleton */
+  background-color: rgba(0, 0, 0, 0.1); /* Color de fondo inicial */
+  animation: skeletonAnimation 1.5s ease-in-out infinite; /* Aplica la animación a las celdas */
+  padding: 10px;
+}
+
+thead .skeleton-cell {
+  height: 30px; /* Altura de las celdas del encabezado */
+}

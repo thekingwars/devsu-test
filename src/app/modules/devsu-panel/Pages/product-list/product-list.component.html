@@ -1,0 +1,106 @@
+<ng-container
+  *ngIf="{
+    products: products$ | async
+  } as state"
+>
+  <devsu-modal
+    *ngIf="showModal()"
+    [product]="product()!"
+    [loading]="loading()"
+    (onClickCancel)="cancelButtonModal()"
+    (onClickConfirm)="confirmButtonModal($event, state.products!)"
+  ></devsu-modal>
+
+  <header class="d-flex justify-content-between mb-5">
+    <input
+      type="text"
+      placeholder="Search..."
+      (keyup)="searchProduct($event)"
+    />
+
+    <devsu-button
+      [label]="'Agregar'"
+      (onClick)="navigateCreateProduct()"
+    ></devsu-button>
+  </header>
+
+  <section class="card" *ngIf="!loading(); else skeletonLoader">
+    <devsu-table
+      [values]="state.products!"
+      [search]="searchProductByName()"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <tr tabla-head>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>description</th>
+        <th>logo</th>
+        <th>Fecha de Liberacion</th>
+        <th>Fecha de Revision</th>
+        <th>Opciones</th>
+      </tr>
+      <ng-template #tablaBody let-product let-index="index">
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.logo }}</td>
+          <td>{{ product.date_release | date }}</td>
+          <td>{{ product.date_revision | date }}</td>
+          <td class="d-flex justify-content-center">
+            <i
+              (click)="showMenu($event, product)"
+              class="fa-solid fa-ellipsis-vertical pointer"
+              style="font-size: 25px"
+            >
+            </i>
+          </td>
+        </tr>
+
+        <div
+          class="contextMenu"
+          [ngStyle]="menuStyle"
+          *ngIf="showContextMenu()"
+          (mouseleave)="closeContextMenu()"
+        >
+          <ul>
+            <li (click)="editProduct()">Editar</li>
+            <li (click)="deleteProduct()">Eliminar</li>
+          </ul>
+        </div>
+      </ng-template>
+    </devsu-table>
+  </section>
+</ng-container>
+
+<ng-template #skeletonLoader>
+  <div class="card">
+    <table class="skeleton-table">
+      <thead>
+        <tr>
+          <th class="skeleton-cell"></th>
+          <th class="skeleton-cell"></th>
+          <th class="skeleton-cell"></th>
+          <!-- Agrega más th según el número de columnas de tu tabla -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="skeleton-cell"></td>
+          <td class="skeleton-cell"></td>
+          <td class="skeleton-cell"></td>
+        </tr>
+        <tr>
+          <td class="skeleton-cell"></td>
+          <td class="skeleton-cell"></td>
+          <td class="skeleton-cell"></td>
+        </tr>
+        <tr>
+          <td class="skeleton-cell"></td>
+          <td class="skeleton-cell"></td>
+          <td class="skeleton-cell"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
