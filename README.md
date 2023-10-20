@@ -2,26 +2,38 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
 
-## Development server
+## Correr el servidor
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Ejecución de la aplicación en Docker
 
-## Code scaffolding
+Siga estos pasos para ejecutar la aplicacion en el contenedor de Docker:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Abre una terminal y navega hasta la raíz del proyecto Angular (donde se encuentra el archivo `Dockerfile`).
 
-## Build
+2. Ejecuta el siguiente comando para construir la imagen de Docker:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```bash
+   docker build -t devsu-test .
 
-## Running unit tests
+2. Ejecuta el siguiente comando para correr la imagen de Docker:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```bash
+   docker run -p 8080:80 devsu-test
 
-## Running end-to-end tests
+### Por ng serve
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Corra el comando ng serve o npm start y dirigase a la siguiente url: `http://localhost:4200/`. Si necesitan hacer algun cambio la pagina se actualiza en tiempo real. Tome en cuenta que debe usar la version 20.5.0 de node (que es la que yo uso) siguiendo estas versiones:
 
-## Further help
+``"node": "^16.14.0 || >=18.10.0",``
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+pueden instalar nvm para manejar las versiones en los siguientes links:
+
+``https://midu.dev/como-instalar-node-en-mac-y-windows/``
+
+## Test
+
+Para correr los test solo deben correr el comando `ng test`, si desean que venga incluido con el coverage colocan `ng test --no-watch --code-coverage`.
+
+De esa forma tendran el coverage con los test
+
+

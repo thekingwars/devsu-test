@@ -43,6 +43,10 @@ fz-25{
   margin: 0 auto;
 }
 
+.table-container {
+  overflow-x: auto;
+}
+
 .p-table {
   width: 100%;
   border-collapse: collapse;
@@ -51,7 +55,6 @@ fz-25{
 .p-table th,
 .p-table td {
   padding: 8px;
-  border: 1px solid #ccc;
 }
 
 .p-table th {

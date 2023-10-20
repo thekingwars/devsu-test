@@ -30,12 +30,6 @@ export class ProductListComponent {
     'top.px': '0px',
   };
 
-  get totalPages(): number {
-    // return Math.ceil(this.data.length / this.selectedItemsPerPage);
-
-    return 0;
-  }
-
   deleteProduct() {
     this.showModal.set(true);
   }

@@ -8,7 +8,6 @@ import { Product } from '../../../@core/models/product.model';
 })
 export class TableDevsuComponent {
   @Input({ required: true }) values: any[] = [];
-  @Input() search: string = '';
   @Input() rowsPerPageOptions: number[] = [];
 
   rows = 5;

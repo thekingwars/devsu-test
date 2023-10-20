@@ -6,6 +6,7 @@ import { ProductListComponent } from './product-list.component';
 import { TableDevsuModule } from '../../../../shared/components/table-devsu/table-devsu.module';
 import { DevsuButtonModule } from '../../../../shared/components/devsu-button/devsu-button.module';
 import { DevsuModalModule } from '../../../../shared/components/devsu-modal/devsu-modal.module';
+import { DevsuSkeletonTableModule } from '../../../../shared/components/devsu-skeleton-table/devsu-skeleton-table.module';
 
 @NgModule({
   declarations: [ProductListComponent],
@@ -15,6 +16,7 @@ import { DevsuModalModule } from '../../../../shared/components/devsu-modal/devs
     TableDevsuModule,
     DevsuButtonModule,
     DevsuModalModule,
+    DevsuSkeletonTableModule,
   ],
 })
 export class ProductListModule {}

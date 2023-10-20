@@ -1,35 +1,39 @@
-<table class="p-table" *ngIf="!!values && values.length > 0; else noData">
-  <thead>
-    <ng-content select="[tabla-head]"></ng-content>
-  </thead>
-  <tbody >
-    <ng-container
-      *ngFor="
-        let item of values.slice(0, rows) | searchProduct: search;
-        trackBy: trackByFn;
-        let i = index
-      "
-    >
+<div class="table-container">
+  <table class="p-table" *ngIf="!!values && values.length > 0; else noData">
+    <thead>
+      <ng-content select="[tabla-head]"></ng-content>
+    </thead>
+    <tbody>
       <ng-container
-        [ngTemplateOutlet]="tablaBodyTemplate"
-        [ngTemplateOutletContext]="{ $implicit: item, index: i }"
-      ></ng-container>
-    </ng-container>
-  </tbody>
+        *ngFor="
+          let item of values.slice(0, rows);
+          trackBy: trackByFn;
+          let i = index
+        "
+      >
+        <ng-container
+          [ngTemplateOutlet]="tablaBodyTemplate"
+          [ngTemplateOutletContext]="{ $implicit: item, index: i }"
+        ></ng-container>
+      </ng-container>
+    </tbody>
 
-  <tfoot>
-    <tr>
-      <td colspan="7" class="align-right border-none">
-        <select [(ngModel)]="rows" class="select-p text-center">
-          <option *ngFor="let option of rowsPerPageOptions" [value]="option">
-            {{ option }}
-          </option>
-        </select>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+    <tfoot>
+      <tr>
+        <td colspan="7" class="align-right border-none">
+          <select [(ngModel)]="rows" class="select-p text-center">
+            <option *ngFor="let option of rowsPerPageOptions" [value]="option">
+              {{ option }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
 
 <ng-template #noData>
-  <div class="text-center">No hay ningun producto creado, por favor cree uno</div>
+  <div class="text-center">
+    No hay ningun producto creado, por favor cree uno
+  </div>
 </ng-template>

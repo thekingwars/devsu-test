@@ -7,6 +7,6 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [TableDevsuComponent, SearchProductPipe],
   imports: [CommonModule, FormsModule],
-  exports: [TableDevsuComponent],
+  exports: [TableDevsuComponent, SearchProductPipe],
 })
 export class TableDevsuModule {}

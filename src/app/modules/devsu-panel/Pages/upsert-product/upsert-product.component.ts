@@ -1,8 +1,9 @@
 import { Component, signal, OnDestroy } from '@angular/core';
 import { DevsuProductService } from '../../Services/devsu-product.service';
-import { filter, finalize, map, tap } from 'rxjs';
+import { filter, finalize, map, tap, withLatestFrom } from 'rxjs';
 import { ErrorFormMessage } from '../../../../@core/utils/errorForm.util';
 import { ActivatedRoute, Router } from '@angular/router';
+import { addYears, format, parseISO } from 'date-fns';
 
 @Component({
   selector: 'app-upsert-product',
@@ -17,11 +18,12 @@ export class UpsertProductComponent
 
   formProduct = this.devsuProductService.formProduct();
 
-  patchForm$ = this.devsuProductService.product$.pipe(
-    filter((e) => !!e),
-    tap((product) => {
+  patchForm$ = this.devsuProductService.getProducts().pipe(
+    withLatestFrom(this.activatedRoute.params),
+    filter(([product, params]) => !!params?.['id']),
+    tap(([products, params]) => {
       this.formProduct.get('id')?.disable();
-
+      const product = products.find((product) => product.id === params['id']);
       this.formProduct.patchValue({
         ...product!,
         date_release: new Date(product!.date_release)
@@ -42,23 +44,16 @@ export class UpsertProductComponent
 
   patchDateRevision$ = this.formProduct.get('date_release')?.valueChanges.pipe(
     tap((date) => {
-      const dateRevision = this.addYear(new Date(date));
+      const dateRevision = this.addYear(parseISO(date));
 
       this.formProduct.get('date_revision')?.patchValue(dateRevision);
     }),
   );
 
   addYear(date: Date): string {
-    date.setFullYear(date.getFullYear() + 1);
+    const newDate = addYears(date, 1);
 
-    const year = date.getFullYear();
-    const month = this.padZero(date.getMonth() + 1);
-    const day = this.padZero(date.getDate());
-    return `${year}-${month}-${day}`;
-  }
-
-  padZero(number: number): string {
-    return number < 10 ? '0' + number : '' + number;
+    return format(newDate, 'yyyy-MM-dd');
   }
 
   disableInput(e: any) {
