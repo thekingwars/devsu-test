@@ -5,10 +5,23 @@
     haveUrlParam: haveUrlParam$ | async
   } as state"
 >
+
+<div class="d-flex justify-content-end mb-5">
+  <a routerLink="/devsu-panel/product-list">
+    <devsu-button
+      label="Volver"
+      color="primary"
+      type="button"
+    >
+    </devsu-button>
+  </a>
+</div>
+
+
   <section class="card w-50 mx-auto">
     <h1 class="text-center">Formulario de Registro</h1>
 
-    <hr />
+    <hr/>
 
     <form [formGroup]="formProduct" (ngSubmit)="onsubmit(state.haveUrlParam!)">
       <div class="grid">
@@ -29,10 +42,10 @@
             class="p-error block text-left pl-2"
           >
             {{
-              getErrorMessage("id", formProduct, {
-                minLength: 3,
-                maxLength: 10
-              })
+            getErrorMessage("id", formProduct, {
+              minLength: 3,
+              maxLength: 10
+            })
             }}
           </small>
         </div>
@@ -51,10 +64,10 @@
             class="p-error block text-left pl-2"
           >
             {{
-              getErrorMessage("name", formProduct, {
-                minLength: 5,
-                maxLength: 100
-              })
+            getErrorMessage("name", formProduct, {
+              minLength: 5,
+              maxLength: 100
+            })
             }}
           </small>
         </div>
@@ -73,10 +86,10 @@
             class="p-error block text-left pl-2"
           >
             {{
-              getErrorMessage("description", formProduct, {
-                minLength: 10,
-                maxLength: 200
-              })
+            getErrorMessage("description", formProduct, {
+              minLength: 10,
+              maxLength: 200
+            })
             }}
           </small>
         </div>
